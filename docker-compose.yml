@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  autoria-scraper:
+    build: .
+    depends_on:
+      - postgres
+    command: python parser_schedule.py
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: your_database_name
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5432:5432"
