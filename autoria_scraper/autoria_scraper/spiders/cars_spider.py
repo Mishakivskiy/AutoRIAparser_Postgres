@@ -16,8 +16,7 @@ class CarsSpider(scrapy.Spider):
 
         next_page = response.css('a.page-link.js-next').attrib['href']
         if next_page is not None:
-            print(next_page)
-            #yield response.follow(next_page, callback=self.parse)
+            yield response.follow(next_page, callback=self.parse)
 
     def parse_car_details(self, response):
         soup = BeautifulSoup(response.text, 'html.parser')
